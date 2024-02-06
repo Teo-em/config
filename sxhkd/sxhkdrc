@@ -1,0 +1,94 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + {shift + Return, Return} 
+	alacritty {--class floating, }
+
+# program launcher
+super + r
+	dmenu_run
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,f,shift + f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,xG,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+
+
+# focus or send to the given desktop
+super + {_,shift + }{a,s,d,z,x,c}
+	bspc {desktop -f,node -d} '^{1-6}'
+
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+super + p
+	alacritty --class floating -e pulsemixer
+
+super + { minus , equal }
+	pactl set-sink-volume $(pactl get-default-sink) {-,+}10%
+
+
+super + v
+	flameshot gui
+
+super + shift + n
+	ratbagctl "Logitech G203 LIGHTSYNC Gaming Mouse" led 0 set color $(gpick -so --no-newline | cut -c2-)
+
+super + n
+	notify-send $(gpick -so --no-newline)
+
+super + b
+	result=$(notify-send -i /home/goodman/.config/dunst/icons/clock.ico "$(date '+Date: %F%nTime: %H:%M:%S')" --action "result"="sound"); if [ "$result" = "result" ]; then cvlc /home/goodman/Downloads/enehuh.mp3; fi
+
+super + g
+	copyq show
