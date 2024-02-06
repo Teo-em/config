@@ -18,8 +18,8 @@ bspc config focus_follows_pointer true
 bspc rule -a copyq state=floating sticky=on
 bspc rule -a floating state=floating
 
-feh --bg-scale /home/goodman/.config/bspwm/wallpaper/wallpaper.png &
-picom -b --config /home/goodman/.config/picom/picom.conf &
+feh --bg-scale $HOME/.config/bspwm/wallpaper/wallpaper.png &
+picom -b --config $HOME/.config/picom/picom.conf &
 dunst &
 setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,es &
 copyq &
