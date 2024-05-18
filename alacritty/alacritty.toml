@@ -1,5 +1,8 @@
 [window]
-	opacity = 0.70
+	opacity = 0.60
 
 [colors]
 	primary.background = "#000000"
+
+[font]
+    normal = { family = "LiterationMono Nerd Font", style = "Regular" }
