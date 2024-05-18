@@ -1,0 +1,11 @@
+vim.cmd("set expandtab")
+vim.cmd("set tabstop=4")
+vim.cmd("set softtabstop=4")
+vim.cmd("set shiftwidth=4")
+vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
+vim.cmd("hi NormalNC guibg=NONE ctermbg=NONE")
+vim.cmd("hi NeotreeNormal guibg=NONE ctermbg=NONE")
+vim.cmd("hi NeotreeNormalNC guibg=NONE ctermbg=NONE")
+vim.cmd("set number")
+
