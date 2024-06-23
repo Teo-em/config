@@ -7,8 +7,23 @@ super + {shift + Return, Return}
 	alacritty {--class floating, }
 
 # program launcher
-super + r
+super + r; r
 	dmenu_run
+
+super + r; f
+    firefox
+
+super + r; d
+    discord
+
+super + r; p
+    firefox --private-window
+
+super + r; v
+	alacritty --class floating -e pulsemixer
+
+super + r; + n
+	gpick -so --no-newline | xclip -rmlastnl -i
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -54,8 +69,8 @@ super + bracket{left,right}
 
 
 # focus or send to the given desktop
-super + {_,shift + }{a,s,d,z,x,c}
-	bspc {desktop -f,node -d} '^{1-6}'
+super + {_,shift + }{1,2,3,a,s,d,z,x,c}
+	bspc {desktop -f,node -d} '^{1-9}'
 
 
 #
@@ -71,24 +86,49 @@ super + alt + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-super + p
-	alacritty --class floating -e pulsemixer
 
 super + { minus , equal }
 	pactl set-sink-volume $(pactl get-default-sink) {-,+}10%
 
 
-super + v
+Print
 	flameshot gui
 
-super + shift + n
-	ratbagctl "Logitech G203 LIGHTSYNC Gaming Mouse" led 0 set color $(gpick -so --no-newline | cut -c2-)
-
-super + n
-	notify-send $(gpick -so --no-newline)
+super + e
+	notify-send "$(xclip -o | trans -b -to es)"
 
 super + b
-	result=$(notify-send -i /home/goodman/.config/dunst/icons/clock.ico "$(date '+Date: %F%nTime: %H:%M:%S')" --action "result"="sound"); if [ "$result" = "result" ]; then cvlc /home/goodman/Downloads/enehuh.mp3; fi
+	result=$(notify-send -i $HOME/.config/dunst/icons/clock.ico "$(date '+Date: %F%nTime: %H:%M:%S')" --action "result"="sound"); if [ "$result" = "result" ]; then cvlc $HOME/.config/dunst/audio/enehuh.mp3 vlc://quit; fi
 
 super + g
 	copyq show
+
+super + shift + i
+    $HOME/AX/scripts/winhide.sh
+
+super + o; p
+    $HOME/AX/scripts/picom.sh
+
+super + o; o
+    $HOME/AX/scripts/olama.sh
+
+super + o; b
+    setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,es &
+
+super + v; t; e
+    $HOME/AX/scripts/pw-audio.sh "translates-e"
+
+super + v; t; s
+    $HOME/AX/scripts/pw-audio.sh "translatee-s"
+
+super + v; e
+    $HOME/AX/scripts/pw-audio.sh "ollamae"
+
+super + v; s
+    $HOME/AX/scripts/pw-audio.sh "ollamas"
+
+super + comma
+    $HOME/AX/scripts/voice_action.sh
+
+super + n; t
+    alacritty --class floating -e $HOME/AX/scripts/ask_ai.sh 
