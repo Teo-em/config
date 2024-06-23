@@ -7,8 +7,15 @@ then
 fi
 
 
+directory="/home/goodman/AX/music/"
+if [ $2 = "home" ]
+then
+    directory="$HOME/"
+elif [ $2 = "sdd" ]
+then
+    directory="$HOME/sdd/"
+fi
 
-temp="/home/goodman/AX/music/"
 name=$(yt-dlp --output "%(title)s" -x --print filename $1) 
 
 if [ $? -ne 0 ]
@@ -18,8 +25,8 @@ then
 fi
 
 echo -n "Descargando ."
-yt-dlp --output "${temp}%(title)s" -x $1 &> /dev/null
+yt-dlp --output "${directory}%(title)s" -x $1 &> /dev/null
 echo -n " ."
-ffmpeg -i "${temp}${name}.opus" -ab 320k "${temp}${name}.mp3" &> /dev/null
+ffmpeg -i "${directory}${name}.opus" -ab 320k "${directory}${name}.mp3" &> /dev/null
 echo -n " ."
-rm "${temp}${name}.opus"
+rm "${directory}${name}.opus"
